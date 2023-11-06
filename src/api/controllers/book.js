@@ -19,7 +19,6 @@ const addBook = {
         try {
             const { title, author, summary } = req.body;
             const bookGot = await Book.findOne({ title: title });
-            console.log(">>> book found: ", bookGot)
             if (bookGot)
                 return res.status(httpStatus.OK).json({
                     message: "Same book already exist",
@@ -115,13 +114,6 @@ const updateBookById = {
     [CONTROLLER]: async (req, res) => {
         try {
             const { title, author, summary } = req.body;
-            const bookTitle = await Book.find({ title });
-            if (bookTitle)
-                return res.status(httpStatus.OK).json({
-                    message: "Same book already exist",
-                    success: false,
-                    data: {},
-                });
             const bookGot = await Book.findById(req.params.id);
             if (!bookGot)
                 return res.status(httpStatus.OK).json({
