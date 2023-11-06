@@ -18,7 +18,7 @@ const addBook = {
     [CONTROLLER]: async (req, res) => {
         try {
             const { title, author, summary } = req.body;
-            const bookGot = await Book.find({ title: title });
+            const bookGot = await Book.findOne({ title: title });
             console.log(">>> book found: ", bookGot)
             if (bookGot)
                 return res.status(httpStatus.OK).json({
